@@ -1,0 +1,86 @@
+version: '2'
+services:
+
+  postgres:
+    image: kartoza/postgis:9.5-2.2
+    container_name: geonode-db
+    volumes:
+      - ./pg/postgres_data:/var/lib/postgresql
+    environment:
+      - USERNAME=docker
+      - PASS=docker
+      - ALLOW_IP_RANGE=0.0.0.0/0
+
+  dbbackups:
+  build: ./docker-pg-backup
+  hostname: pg-backups
+  volumes:
+    - ./backups:/backups
+  links:
+    - postgres:postgres
+  environment:
+    - DUMPPREFIX=univenda
+    # These are all defaults anyway, but setting explicitly in
+    # case we ever want to ever use different credentials
+    - PGUSER=docker
+    - PGPASSWORD=docker
+    - PGPORT=5432
+    - PGHOST=db
+    - PGDATABASE=gis
+
+
+  elasticsearch:
+   image: elasticsearch
+
+  rabbitmq:
+     image: rabbitmq
+
+  django:
+    image: geonode/django
+    links:
+      - postgres
+      - elasticsearch
+      - rabbitmq
+    command: django-admin.py runserver 0.0.0.0:8000 --settings=geonode.settings
+    env_file:
+      - ./scripts/docker/env/production/django.env
+
+  celery:
+    image: geonode/django
+    links:
+      - rabbitmq
+      - postgres
+      - elasticsearch
+    command: celery worker --app=geonode.celery_app:app -B -l INFO
+    env_file:
+      - ./scripts/docker/env/production/django.env
+
+  geoserver:
+    image: geonode/geoserver:alias
+    links:
+      - postgres
+    ports:
+      - "8182:8080"
+    volumes_from:
+      - data_dir_conf
+    env_file:
+      - ./scripts/docker/env/production/geoserver.env
+
+  geonode:
+    image: geonode/nginx:geoserver
+    links:
+      - django
+      - geoserver
+    ports:
+      - "8500:80"
+
+  data_dir_conf:
+    image: geonode/geoserver_data:2.9.x-oauth2
+    container_name: geoserver_data_dir
+    command: /bin/true
+    volumes:
+      - /geoserver_data/data
+
+volumes:
+
+  geoserver_data_dir:
