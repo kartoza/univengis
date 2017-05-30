@@ -1,0 +1,59 @@
+
+{% block content %}
+
+    <style>
+        table {
+            margin: 10px 30px;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        table, td, th {
+            padding: 10px;
+            border: 2px solid grey;
+        }
+    </style>
+
+    <table>
+    <tr>
+        <th>OBJECTID</th> <th>Shape</th> <th>Observer</th> <th>COLECT_NO</th> <th>Colect_NO_num</th> <th>OB_Date</th>
+        <th>OB_HH</th> <th>OB_MM</th> <th>Region</th> <th>MAJOR</th> <th>Loc_Munic</th>	<th>MINOR</th> <th>Park</th>
+        <th>Centre_ED</th> <th>PRECISE</th>	<th>Site_code</th> <th>NOTES</th> <th>NOTES_2</th> <th>Abundance</th>
+        <th>VEG_TYPE</th> <th>Habitat</th> <th>SUBSTRAT</th> <th>SOILE</th> <th>MOISTURE</th> <th>EXPOSURE</th>
+        <th>LITHOLOGY</th> <th>Biotic_Efe</th> <th>ASPECT</th> <th>Asp_no</th> <th>Asp_mag</th>	<th>Mag_decline</th>
+        <th>SLOPE</th> <th>Slope_deg</th> <th>GROTH_FORM</th> <th>SP_HAIT</th> <th>SPEC_MORF</th> <th>OB_type</th>
+        <th>OB_method</th> <th>SPES_TIPE</th> <th>Herb</th>	<th>p_name</th>	<th>name</th> <th>sp_no</th> <th>sp_no_PRE</th>
+        <th>Grid_Ref</th> <th>pentad</th> <th>alt</th> <th>POINT_X</th>	<th>POINT_Y</th> <th>POINT_Z</th> <th>POINT_M</th>
+        <th>x_h</th> <th>x_m</th> <th>x_s</th> <th>y_h</th>	<th>y_m</th> <th>y_s</th> <th>c_year</th> <th>c_month</th>
+        <th>c_day</th> <th>Project</th>	<th>ID_By</th> <th>Verified</th> <th>on_list</th> <th>RD_status</th> <th>Confidence</th>
+        <th>LATITUDE</th> <th>LONGITUDE</th> <th>Data_admin</th> <th>I_HER_SOUT</th> <th>NEED_ID</th> <th>Det_date</th>
+        <th>COLL_P_NO</th> <th>Ref</th>	<th>link2</th> <th>LAT_LONG</th> <th>DATUM</th>
+    </tr>
+    {% for slot in slotdata %}
+        <tr>
+            <td>{{ slot.object_id }}</td> <td>{{ slot.shape }}</td> <td>{{ slot.observer }}</td> <td>{{ slot.colect_no }}</td>
+            <td>{{ slot.colect_no_num }}</td> <td>{{ slot.ob_date }}</td> <td>{{ slot.ob_hh }}</td> <td>{{ slot.ob_mm }}</td> <td>{{ slot.region }}</td>
+            <td>{{ slot.major }}</td> <td>{{ slot.loc_munic }}</td> <td>{{ slot.minor }}</td> <td>{{ slot.park }}</td>
+            <td>{{ slot.centre_ed }}</td> <td>{{ slot.precise }}</td> <td>{{ slot.site_code }}</td> <td>{{ slot.notes }}</td>
+            <td>{{ slot.notes_2 }}</td> <td>{{ slot.abundance }}</td> <td>{{ slot.veg_type }}</td> <td>{{ slot.habitat }}</td>
+            <td>{{ slot.substrat }}</td> <td>{{ slot.soile }}</td> <td>{{ slot.moisture }}</td> <td>{{ slot.exposure }}</td>
+            <td>{{ slot.lithology }}</td> <td>{{ slot.biotic_efe }}</td> <td>{{ slot.aspect }}</td> <td>{{ slot.asp_no }}</td>
+            <td>{{ slot.asp_mag }}</td> <td>{{ slot.mag_decline }}</td> <td>{{ slot.slope }}</td> <td>{{ slot.slope_deg }}</td>
+            <td>{{ slot.groth_form }}</td> <td>{{ slot.sp_hait }}</td> <td>{{ slot.spec_morf }}</td>, <td>{{ slot.ob_type }}</td>
+            <td>{{ slot.ob_method }}</td> <td>{{ slot.spes_tipe }}</td> <td>{{ slot.herb }}</td> <td>{{ slot.p_name }}</td>
+            <td>{{ slot.name }}</td> <td>{{ slot.sp_no }}</td> <td>{{ slot.sp_no_pre }}</td> <td>{{ slot.grid_ref }}</td>
+            <td>{{ slot.pentad }}</td> <td>{{ slot.alt }}</td> <td>{{ slot.point_x }}</td> <td>{{ slot.point_y }}</td>
+            <td>{{ slot.point_z }}</td> <td>{{ slot.point_m }}</td> <td>{{ slot.x_h }}</td> <td>{{ slot.x_m }}</td> <td>{{ slot.x_s }}</td>
+            <td>{{ slot.y_h }}</td> <td>{{ slot.y_m }}</td> <td>{{ slot.y_s }}</td> <td>{{ slot.c_year }}</td> <td>{{ slot.c_month }}</td>
+            <td>{{ slot.c_day }}</td> <td>{{ slot.project }}</td> <td>{{ slot.id_by }}</td> <td>{{ slot.verified }}</td>
+            <td>{{ slot.on_list }}</td> <td>{{ slot.rd_status }}</td> <td>{{ slot.confidence }}</td> <td>{{ slot.latitude }}</td>
+            <td>{{ slot.longitude }}</td> <td>{{ slot.data_admin }}</td> <td>{{ slot.i_her_sout }}</td> <td>{{ slot.need_id }}</td>
+            <td>{{ slot.det_date }}</td> <td>{{ slot.coll_p_no }}</td> <td>{{ slot.ref }}</td> <td>{{ slot.link2 }}</td>
+            <td>{{ slot.lat_long }}</td> <td>{{ slot.datum }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

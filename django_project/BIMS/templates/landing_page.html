@@ -1,0 +1,19 @@
+{% load i18n %}
+
+{% block head_title %}<h1 style="text-align: center">Welcome!</h1>{% endblock %}
+
+{% load static %}
+
+{% block css_head %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+{% endblock css_head %}
+
+{% block content %}
+    <div class="container" style="text-align: center">
+        <a class="btn btn-default btn-mini" href="{% url 'upload_file' %}">Upload and View File</a>
+        <a class="btn btn-default btn-mini" href="/admin/">Admin Site</a>
+    </div>
+
+{% endblock %}

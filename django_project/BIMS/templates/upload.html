@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{% block head_title %}<h2 style="margin-left: 30px;">Data:</h2>{% endblock %}
+
+{% load static %}
+
+{% block css_head %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+{% endblock css_head %}
+
+{% block content %}
+
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+
+    {% include "data_grid.html" %}
+    <h4 style="margin-top: 20px; font-weight: bold; margin-left: 30px">Input data:</h4>
+    <div class="container" style="margin-top: 20px; margin-left: 30px">
+        <form name="file_uploaded" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+  <p style="margin-top: 20px; margin-left: 30px;"><a class="button" href="{% url 'index' %}">Return to home</a></p>
+{% endblock %}

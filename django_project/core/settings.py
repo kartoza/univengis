@@ -12,6 +12,24 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+
+# Absolute filesystem path to the Django project directory:
+DJANGO_ROOT = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    ))
+
+def absolute_path(*args):
+    """Get an absolute path for a file that is relative to the django root.
+
+    :param args: List of path elements.
+    :type args: list
+
+    :returns: An absolute path.
+    :rtype: str
+    """
+    return os.path.join(DJANGO_ROOT, *args)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -55,7 +73,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [absolute_path('BIMS', 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -70,6 +89,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
