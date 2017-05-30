@@ -46,7 +46,6 @@ def file_upload(request):
                         det_date=row[71], coll_p_no=row[72], ref=row[73], link2=row[74],
                         lat_long=row[75], datum=row[76])
             form.save()
-            # return redirect('index')
     else:
         form = DataTableForm()
     slotdata = SlotData.objects.all()

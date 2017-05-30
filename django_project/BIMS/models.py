@@ -404,7 +404,7 @@ class SlotData(models.Model):
 
 
 class DataTable(models.Model):
-    """DataTable model gets data from a file csv."""
+    """DataTable model gets data from a csv file."""
 
     title = models.CharField(
         max_length=250,
