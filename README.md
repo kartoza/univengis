@@ -8,6 +8,8 @@
 
 * Clone the geonode repository by running `git clone git@github.com:GeoNode/geonode.git docker-geonode`
 
+* Edit all the files in deployment and replace the variable `SERVER_IP` with the ip address of your server
+
 * Copy the files located in deployment to their respective location
 
 * Run `cp docker-compose.yml docker-geonode`
@@ -23,6 +25,8 @@
 * We will use the docker-compose.yml to build geonode.
 
 * Create folders for storing the backups and storing the postgres data. Run `mkdir backups && mkdir -p pg/postgres_data`
+
+* Open `sudo nano /etc/hosts`  to update your host file and add the entry: `127.0.0.1       localhost geonode 255.255.255.255 broadcasthost ::1 localhost`
 
 * Run `docker-compose up -d` and see other instructions for running [geonode](https://github.com/GeoNode/geonode)
 
@@ -56,8 +60,7 @@ NB: Since geonode also uses docker-postgis we can link this container to  runnin
 * Edit the file [run qgis](https://github.com/kartoza/docker-qgis-desktop/blob/develop/2.14/run-qgis-2.14ltr-in-docker.sh)
   and include:
     ```
-    external_links:
-            - name_of_db:name_of_db
+    - links name_of_db:name_of_db
     ```
   This ensures that we use the same postgis container in QGIS and geonode
 

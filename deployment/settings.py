@@ -570,7 +570,7 @@ GEOSERVER_LOCATION = os.getenv(
     'GEOSERVER_LOCATION', 'http://localhost:8080/geoserver/'
 )
 GEOSERVER_PUBLIC_LOCATION = os.getenv(
-    'GEOSERVER_PUBLIC_LOCATION', 'http://localhost:8182/geoserver/'
+    'GEOSERVER_PUBLIC_LOCATION', 'http://SERVER_IP:8080/geoserver/'
 )
 
 # OGC (WMS/WFS/WCS) Server Settings
