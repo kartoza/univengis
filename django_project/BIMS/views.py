@@ -1,11 +1,7 @@
 # coding=UTF-8
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404, redirect
 from .forms import DataTableForm
-from .models import DataTable, SlotData
+from .models import SlotData
 from django.shortcuts import render
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
 import csv
 
 
@@ -17,7 +13,7 @@ def file_upload(request):
         form = DataTableForm(request.POST, request.FILES)
         if form.is_valid():
             uploaded_file = request.FILES['document']
-            reader = csv.reader(uploaded_file, delimiter=str(u':').encode('utf-8'))
+            reader = csv.reader(uploaded_file)
             header = next(reader)
             for row in reader:
                     _, created = SlotData.objects.get_or_create(
