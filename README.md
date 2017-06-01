@@ -1,16 +1,16 @@
-# Setup Instruction for Custom Geonode
+# Setup Instructions for Custom Geonode
 
 * Make sure that docker and other tools have been installed on the host machine.
 
-* Clone the univenda repository by running `git clone git@github.com:kartoza/univengis.git`
+* Clone the univengis repository by running `git clone git@github.com:kartoza/univengis.git`
 
-* Run `cd unievengis/deployment`
+* Run `cd univengis/deployment`
 
 * Clone the geonode repository by running `git clone git@github.com:GeoNode/geonode.git docker-geonode`
 
 * Edit all the files in deployment and replace the variable `SERVER_IP` with the ip address of your server
 
-* Copy the files located in deployment to their respective location
+* Copy the files located in deployment to their respective locations
 
 * Run `cp docker-compose.yml docker-geonode`
 
